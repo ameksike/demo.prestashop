@@ -13,8 +13,21 @@
         {hook h='displayLeftColumn'}
     </div>
 
+    <!-- controller options -->
+    <div class="ksi-panel col-sm-12">
+        <p>
+            &raquo; {l s='Controller info' mod='ksinfo'} : <br>
+            <span><strong>controller_name_1:</strong> {$controller_name1}</span> <br>
+            <span><strong>controller_name_2:</strong> {$controller_name2}</span> <br>
+        </p>
+    </div>
+
     <!-- insert partials tpl -->
     <div class="ksi-panel col-sm-12">
-        {include file="$tpl_path/partials/urls.tpl"}
+            <p>
+            &raquo; {l s='URL Use' mod='ksinfo'} : <br>
+                {include file="$tpl_path/partials/urls.tpl"}
+           </p>
     </div>
+
 {/block}
