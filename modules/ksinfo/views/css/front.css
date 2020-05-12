@@ -26,8 +26,13 @@
 * to avoid any conflicts with others containers.
 */
 .ksi-panel {
-    background: #fff;
+    background: #fff; 
     border-radius: 2px;
     margin-bottom: 1.5rem;
     padding: 3.125rem;
+}
+
+.form-img img{
+    width: 100px;
+    height: 100px;
 }

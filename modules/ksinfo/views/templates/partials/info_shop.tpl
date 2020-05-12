@@ -9,5 +9,6 @@
             <li><span> <strong>  Days for New Products: </strong> {$daynewproduct} </span> </li>
             <li><span> <strong>  PS Version: </strong> {$PS_VERSION} </span> </li>
             <li><span> <strong>  Multistore: </strong> {if $multistore} {l s='Yes.' mod='ksinfo'} {else} {l s='No.' mod='ksinfo'} {/if} </span> </li>
+            <li><span> <a href="https://devdocs.prestashop.com/1.7/modules/creation/displaying-content-in-front-office/"> <strong>  More </strong> </a> </li>
     </ul>
 </p>

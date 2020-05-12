@@ -1,0 +1,11 @@
+.ksi-panel {
+    background: #00b4e1 !important;
+}
+
+.docs_list a{
+    color: black;
+}
+
+.docs_list a :hover{
+    color: rgb(116, 39, 39);
+}

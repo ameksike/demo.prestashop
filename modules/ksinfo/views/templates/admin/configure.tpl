@@ -44,9 +44,11 @@
 <div class="panel">
 	{include file="$tpl_path/partials/info_shop.tpl"}
 </div>
+
 <div class="panel">
 	{include file="$tpl_path/partials/info_plugin.tpl"}
 </div>
+
 <div class="panel">
 	{include file="$tpl_path/partials/info_docs.tpl"}
 </div>

@@ -32,6 +32,8 @@ if (!defined('_PS_VERSION_')) {
 class Ksinfo extends Module 
 {
     protected $config_form = false;
+    public $path;
+    public $url;
 
     public function __construct()
     {
@@ -40,20 +42,17 @@ class Ksinfo extends Module
         $this->version = '1.0.0';
         $this->author = 'Antonio Membrides Espinosa';
         $this->need_instance = 1;
-
-        /**
-         * Set $this->bootstrap to true if your module is compliant with bootstrap (PrestaShop 1.6)
-         */
         $this->bootstrap = true;
 
         parent::__construct();
 
         $this->displayName = $this->l('KsInfo Demo Plugin');
-        $this->description = $this->l('add Ksike Information demo plugin to show a small panel informative about your Shop and your plugin.');
-
+        $this->description = $this->l('Add Ksike Information demo plugin to show a small informative panel about your Shop and your Plugin.');
         $this->confirmUninstall = $this->l('');
 
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+        $this->path = __DIR__;
+        $this->url = Context::getContext()->link->getModuleLink('ksinfo');
     }
 
     /**
@@ -76,11 +75,12 @@ class Ksinfo extends Module
 
     public function uninstall()
     {
-        Configuration::deleteByName('KSINFO_LIVE_MODE');
-
         include(dirname(__FILE__).'/sql/uninstall.php');
+        Configuration::deleteByName('KSINFO_LIVE_MODE');
+        Configuration::deleteByName('KSINFO_ACCOUNT_EMAIL');
+        Configuration::deleteByName('KSINFO_ACCOUNT_PASSWORD');
 
-        return parent::uninstall();
+        return parent::uninstall(); 
     }
 
     /**
@@ -294,6 +294,11 @@ class Ksinfo extends Module
             break;
             case 'displayRightColumn':
                 $cfg['title'] = 'home';  
+            break;
+
+            default: 
+                //... $link->getModuleLink does not work on module dashboard use this for fix
+                $cfg['link'] = Context::getContext()->link;
             break;
         }
 

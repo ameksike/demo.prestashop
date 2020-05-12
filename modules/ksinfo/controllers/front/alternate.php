@@ -38,6 +38,17 @@ class KsinfoAlternateModuleFrontController extends ModuleFrontController{
         $data['id'] = Tools::getValue('id');
         $this->context->smarty->assign($data);
         
-        $this->setTemplate('module:ksinfo/views/templates/front/alternate.tpl');
+        $this->setSmartTemplate('views/templates/front/alternate.tpl');
+    }
+
+        
+    private function setSmartTemplate($tpl, $params=false, $moduleName='ksinfo'){
+        if($params) $this->context->smarty->assign($params);
+        if (Tools::version_compare(_PS_VERSION_, '1.7', '>=')) {
+            $this->setTemplate("module:$moduleName/$tpl");
+        } else {
+            $this->setTemplate($this->module->path, $tpl);
+            //$this->display(__FILE__, 'views/blockcategories_admin.tpl');
+        }
     }
 }
