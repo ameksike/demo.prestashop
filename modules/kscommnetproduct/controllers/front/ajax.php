@@ -27,38 +27,12 @@
 */
 
 include_once __DIR__ . "/../../models/CommentRepository.php";
+include_once __DIR__ . "/../base/KsModuleFrontController.php";
 
-class KsCommnetProductFormModuleFrontController extends ModuleFrontController{
+class KsCommnetProductAjaxModuleFrontController extends KsModuleFrontController{
 
-    public function init(){
-        parent::init();
+    public function list2($params){
+        return ['data'=>$params ];
     }
 
-    public function initContent() {
-        parent::initContent();
-
-        $this->setSmartTemplate('views/templates/front/comment.out.tpl', [
-            'comments' => $this->getListComment(),
-            'path' => $this->module->path,
-            'type' =>  Tools::getValue('type', 'html')
-        ]);
-
-        if(Tools::isSubmit('comment')){
-            $params = Tools::getAllValues();
-            (new CommentRepository())->save($params);
-        }
-    }
-
-    private function setSmartTemplate($tpl, $params=false, $moduleName='kscommnetproduct'){
-        if($params) $this->context->smarty->assign($params);
-        if (Tools::version_compare(_PS_VERSION_, '1.7', '>=')) {
-            $this->setTemplate("module:$moduleName/$tpl");
-        } else {
-            $this->setTemplate($this->module->path, $tpl);
-        }
-    }
-
-    private function getListComment(){
-       return (new CommentRepository())->get();
-    }
 }
