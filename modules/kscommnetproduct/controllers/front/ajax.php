@@ -31,8 +31,18 @@ include_once __DIR__ . "/../base/KsModuleFrontController.php";
 
 class KsCommnetProductAjaxModuleFrontController extends KsModuleFrontController{
 
-    public function list2($params){
-        return ['data'=>$params ];
+    public function listComment($params){
+        return [
+            'data'=> (new CommentRepository())->get()
+        ];
+    }
+
+    public function saveComment($params){
+
+        return [
+            'data'=> (new CommentRepository())->save($params)
+        ];
+
     }
 
 }
